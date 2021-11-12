@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useQuery } from "react-query";
 
 type CardProp = {
@@ -29,19 +30,21 @@ function useFetchPokemon(pokemon: { url: string }) {
 const Card = ({ pokemon }: CardProp) => {
   const { data, status } = useFetchPokemon(pokemon);
   return (
-    <div className="card">
-      {status === "loading" ? (
-        <h2>Loading....</h2>
-      ) : (
-        <Image
-          alt="Picture of the pokemoon"
-          src={data.sprites.front_default}
-          width={200}
-          height={200}
-        />
-      )}
-      <p>{pokemon.name}</p>
-    </div>
+    <Link href={`/pokemon/${pokemon.name}`} passHref>
+      <div className="card">
+        {status === "loading" ? (
+          <h2>Loading....</h2>
+        ) : (
+          <Image
+            alt="Picture of the pokemoon"
+            src={data.sprites.front_default}
+            width={200}
+            height={200}
+          />
+        )}
+        <p>{pokemon.name}</p>
+      </div>
+    </Link>
   );
 };
 
