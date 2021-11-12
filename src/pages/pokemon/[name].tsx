@@ -1,4 +1,4 @@
-import React from "react";
+import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -31,7 +31,7 @@ type DataType = {
   };
 };
 
-const PokemonDetailsPage = () => {
+const PokemonDetailsPage: NextPage = () => {
   // Define proper type for router
   const router: any = useRouter();
   const { name } = router.query;
