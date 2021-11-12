@@ -2,33 +2,31 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, clone Repository and cd into pokemon-app, install dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Implementation Notes
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+I decided to use NextJs to scaffold a quick app and used React Query for handling requests to the API.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Using React Query made making multiple API calls easy and it's ability to store each calls response using a unique query key makes it possible to avoid making multiple calls for the same resource(s) within a given time period.
 
-## Learn More
+## Possible Improvements
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Write basic tests to cover the components, I currently do not have any test setup.
+2. When a user clicks on a pokemon card on the home page and gets navigated to the pokemon details screen, I am currently making a call on the pokemon detail page to fetch details of the particular pokemon. This step seems a bit redundant since I already had all the details for each card being displayed in the grid on the home page. I had considered maybe introducing a state library to hold clicked card detail and just pass it to the details page on load.
+3. Implement the search functionality, I didn't have enough time to really give this a crack but I am confident it can be implemnted in the future.
+4. I found myself reapeating a lot of type definitions (name: string; url: string;), I feel creating an exportable type would be nice to avoid code duplication.
+5. Styling! Removing browser defaults, using custom fonts, making the app mobile responsive. All these will be nice additions.
+6. Create a constant file to store values that are needed across the app. This will give a single source of truth for those values and make changing them easy in the future.
