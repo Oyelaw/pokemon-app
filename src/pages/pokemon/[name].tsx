@@ -1,7 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "react-query";
 import Image from "next/image";
+
+import { useFetchPokemon } from "../../hooks/index";
 
 type PokemonMove = {
   move: { name: string; url: string };
@@ -34,28 +35,6 @@ const PokemonDetailsPage = () => {
   // Define proper type for router
   const router: any = useRouter();
   const { name } = router.query;
-
-  const fetchPokemonDetails = async (name: string) => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    if (!response.ok) {
-      console.log("Error", response);
-
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  };
-
-  function useFetchPokemon(name: string) {
-    return useQuery(
-      ["pokemon", name],
-      async ({ queryKey }) => {
-        return await fetchPokemonDetails(queryKey[1]);
-      },
-      {
-        staleTime: Infinity,
-      }
-    );
-  }
 
   const { data, status } = useFetchPokemon(name);
 
@@ -160,7 +139,7 @@ const PokemonDetailsPage = () => {
   };
   return (
     <div className="container">
-      {status === "loading" ? <h4>loading..</h4> : <ShapeData data={data} />}
+      {status === "loading" ? <h2>loading..</h2> : <ShapeData data={data} />}
     </div>
   );
 };
