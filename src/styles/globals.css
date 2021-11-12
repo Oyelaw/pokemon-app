@@ -15,6 +15,10 @@ a {
   box-sizing: border-box;
 }
 
+.container {
+  padding: 0 2rem;
+}
+
 .card {
   background-color: yellow;
   height: 300px;

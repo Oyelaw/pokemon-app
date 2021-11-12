@@ -7,7 +7,11 @@ const PokemonDetailsPage = () => {
 
   console.log("name", name);
 
-  return <h1>Details goes here</h1>;
+  return (
+    <div className="container">
+      <h1>Details goes here</h1>
+    </div>
+  );
 };
 
 export default PokemonDetailsPage;
