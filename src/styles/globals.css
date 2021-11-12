@@ -37,3 +37,20 @@ a {
   background-color: burlywood;
   padding: 20px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.button {
+  background-color: cornflowerblue;
+  padding: 10px;
+  border: none;
+  min-width: 80px;
+  border-radius: 4px;
+  color: white;
+}
+
+.button:disabled {
+  background-color: lightslategray;
+}

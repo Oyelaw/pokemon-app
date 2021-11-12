@@ -10,7 +10,7 @@ const Home: NextPage = () => {
 
   const { data, isLoading } = useFetchPageHook(pageCount);
 
-  const next = () => {
+  const nextPage = () => {
     const { next } = data;
     if (!next) {
       return null;
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     setPageCount((current) => current + 1);
   };
 
-  const prev = () => {
+  const previousPage = () => {
     const { previous } = data;
     if (!previous) {
       return null;
@@ -34,9 +34,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <button onClick={prev}>Previous </button>
-        <button onClick={next}>Next</button>
+      <div className="button-container">
+        <button onClick={previousPage} className="button">
+          Previous{" "}
+        </button>
+        <button onClick={nextPage} className="button">
+          Next
+        </button>
       </div>
       {!isLoading && <CardGrid pokemonData={data.results} />}
     </div>
