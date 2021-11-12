@@ -21,7 +21,7 @@ type PokemonType = {
 
 type DataType = {
   data: {
-    species: any;
+    species: { name: string; url: string };
     weight: number;
     types: PokemonType[];
     stats: PokemonStat[];
@@ -29,7 +29,9 @@ type DataType = {
     sprites: { front_default: string };
   };
 };
+
 const PokemonDetailsPage = () => {
+  // Define proper type for router
   const router: any = useRouter();
   const { name } = router.query;
 
@@ -145,6 +147,12 @@ const PokemonDetailsPage = () => {
             background-color: whitesmoke;
             padding: 10px;
             margin: 10px 0;
+          }
+
+          @media (max-width: 320px) {
+            .moves-grid {
+              grid-template-columns: 1fr;
+            }
           }
         `}</style>
       </>
