@@ -43,8 +43,6 @@ const Home: NextPage = () => {
     }
   );
 
-  console.log("data", data);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -57,7 +55,7 @@ const Home: NextPage = () => {
         <button onClick={prev}>Previous </button>
         <button onClick={next}>Next</button>
       </div>
-      <CardGrid />
+      {!isLoading && <CardGrid pokemonData={data.results} />}
     </div>
   );
 };

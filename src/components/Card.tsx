@@ -1,10 +1,14 @@
 import React from "react";
 
-const Card = () => {
+type CardProp = {
+  pokemon: { url: string; name: string };
+};
+
+const Card = ({ pokemon }: CardProp) => {
   return (
     <div className="card">
       <p>Pokemon Image</p>
-      <p>Pokemon Name</p>
+      <p>{pokemon.name}</p>
     </div>
   );
 };
