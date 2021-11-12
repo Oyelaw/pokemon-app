@@ -1,11 +1,50 @@
 import type { NextPage } from "next";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import Head from "next/head";
-import Image from "next/image";
+
 import styles from "../styles/Home.module.css";
 
 import CardGrid from "../components/CardGrid";
 
+type FetchProps = {
+  offSet: number;
+  page: number | string;
+};
+
 const Home: NextPage = () => {
+  const [pageCount, setPageCount] = useState(0);
+
+  const next = () => {
+    setPageCount((current) => current + 1);
+  };
+
+  const prev = () => {
+    setPageCount((current) => current - 1);
+  };
+
+  const fetchPage = async ({ offSet, page }: FetchProps) => {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon?offset=${
+        Number(page) * offSet
+      }&limit=${offSet}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  };
+
+  const { isLoading, data } = useQuery(
+    ["page", pageCount],
+    ({ queryKey }) => fetchPage({ offSet: 16, page: queryKey[1] }),
+    {
+      keepPreviousData: true,
+    }
+  );
+
+  console.log("data", data);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +53,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Home Page</h1>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button onClick={prev}>Previous </button>
+        <button onClick={next}>Next</button>
+      </div>
       <CardGrid />
     </div>
   );
