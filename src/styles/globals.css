@@ -14,3 +14,22 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.card {
+  background-color: yellow;
+  height: 300px;
+  width: 300px;
+  justify-items: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  background-color: burlywood;
+  padding: 20px;
+}
