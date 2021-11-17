@@ -31,7 +31,7 @@ const Card = ({ pokemon }: CardProp) => {
   const { data, status } = useFetchPokemon(pokemon);
   return (
     <Link href={`/pokemon/${pokemon.name}`} passHref>
-      <div className="card">
+      <div className="bg-white w-60 rounded-md items-center py-3 flex flex-col hover:bg-gray-200 hover:-translate-y-0.5 transform transition cursor-pointer">
         {status === "loading" ? (
           <h2>Loading....</h2>
         ) : (
@@ -42,7 +42,7 @@ const Card = ({ pokemon }: CardProp) => {
             height={200}
           />
         )}
-        <p>{pokemon.name}</p>
+        <p className="text-gray-900 text-center uppercase">{pokemon.name}</p>
       </div>
     </Link>
   );

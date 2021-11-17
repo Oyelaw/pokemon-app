@@ -42,99 +42,85 @@ const PokemonDetailsPage: NextPage = () => {
     const { weight, species, types, stats, moves, sprites } = data;
 
     return (
-      <>
-        <div className="container">
-          <p>
-            <b>Name</b>: {species.name}
-          </p>
-          <Image
-            alt="Picture of the pokemoon"
-            src={sprites.front_default}
-            width={300}
-            height={300}
-          />
-          <p>
-            <b>Species</b>: {species.name}
-          </p>
-          <p>
-            <b>Weight</b>: {weight}
-          </p>
+      <div className="container p-4">
+        <div className="grid gap-4 justify-items-center xl:grid-cols-2">
+          <div>
+            <h2 className="text-gray-900 text-center">
+              <span className="uppercase font-semibold">Name</span>:{" "}
+              <span className="capitalize">{species.name}</span>
+            </h2>
+            <div className="flex justify-center">
+              <Image
+                alt="Picture of the pokemoon"
+                src={sprites.front_default}
+                width={300}
+                height={300}
+              />
+            </div>
 
-          <h2>Types</h2>
-          <div className="types">
-            {types.map((item: PokemonType) => {
-              const { type } = item;
-              return <p key={type.name}>{type.name}</p>;
-            })}
+            <p className="text-gray-900 text-center">
+              <span className="capitalize font-semibold">Species</span>:{" "}
+              <span className="capitalize">{species.name}</span>
+            </p>
+            <p className="text-gray-900 text-center">
+              <span className="capitalize font-semibold">Weight</span>: {weight}
+            </p>
+
+            <h2 className="text-gray-900 text-center font-semibold mt-4 uppercase">
+              Types
+            </h2>
+            <div className="flex space-x-2 flex-wrap justify-center">
+              {types.map((item: PokemonType) => {
+                const { type } = item;
+                return (
+                  <p
+                    className="text-gray-900 text-center capitalize"
+                    key={type.name}
+                  >
+                    {type.name}
+                  </p>
+                );
+              })}
+            </div>
+
+            <h2 className="text-gray-900 text-center font-semibold mt-4 mb-2 uppercase">
+              Stats
+            </h2>
+            <div className="grid justify-items-center lg:grid-cols-3 gap-3">
+              {stats.map((item: PokemonStat) => {
+                const { base_stat, effort, stat } = item;
+                return (
+                  <div
+                    className="w-48 bg-indigo-400 p-3 rounded-lg text-white"
+                    key={stat.name}
+                  >
+                    <h3 className="text-center uppercase">{stat.name}</h3>
+                    <p className="text-center">Base stat: {base_stat}</p>
+                    <p className="text-center">Effort: {effort}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          <h2>Stats</h2>
-          <div className="width-100">
-            {stats.map((item: PokemonStat) => {
-              const { base_stat, effort, stat } = item;
-              return (
-                <div className="stat" key={stat.name}>
-                  <h3>{stat.name}</h3>
-                  <p>Base stat: {base_stat}</p>
-                  <p>Effort: {effort}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          <h2>Moves</h2>
-          <div className="moves-grid">
-            {moves.map((item: PokemonMove) => {
-              const { move } = item;
-              return (
-                <p key={move.name}>
-                  <b>Name</b>: {move.name}
-                </p>
-              );
-            })}
+          <div>
+            <h2 className="text-gray-900 text-center font-semibold mb-2 uppercase">
+              Moves
+            </h2>
+            <div className="grid justify-items-center md:grid-cols-2 lg:grid-cols-3 gap-3 text-gray-900">
+              {moves.map((item: PokemonMove) => {
+                const { move } = item;
+                return (
+                  <p key={move.name} className="bg-gray-300 p-2 rounded-lg">
+                    <span className="capitalize font-semibold">Name</span>:{" "}
+                    <span className="capitalize">{move.name}</span>
+                  </p>
+                );
+              })}
+            </div>
           </div>
         </div>
-        <style jsx>{`
-          .moves-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background-color: violet;
-            width: 100%;
-            padding: 10px;
-          }
-
-          .width-100 {
-            width: 100%;
-          }
-
-          .types {
-            width: 100%;
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-          }
-
-          .stat {
-            background-color: whitesmoke;
-            padding: 10px;
-            margin: 10px 0;
-          }
-
-          @media (max-width: 320px) {
-            .moves-grid {
-              grid-template-columns: 1fr;
-            }
-          }
-        `}</style>
-      </>
+      </div>
     );
   };
   return (
