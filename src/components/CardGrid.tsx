@@ -13,7 +13,7 @@ type CardGridProps = {
 
 const CardGrid = ({ pokemonData }: CardGridProps) => {
   return (
-    <div className="card-grid">
+    <div className="grid gap-4 justify-items-center mt-5 md:grid-cols-2 lg:grid-cols-4">
       {pokemonData.map((pokemon: Pokemon) => {
         return <Card pokemon={pokemon} key={pokemon.name} />;
       })}
