@@ -1,56 +1,9 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.container {
-  padding: 0 2rem;
-}
-
-.card {
-  background-color: yellow;
-  height: 300px;
-  width: 300px;
-  justify-items: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  background-color: burlywood;
-  padding: 20px;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-evenly;
-}
-.button {
-  background-color: cornflowerblue;
-  padding: 10px;
-  border: none;
-  min-width: 80px;
-  border-radius: 4px;
-  color: white;
-}
-
-.button:disabled {
-  background-color: lightslategray;
+@layer components {
+  .btn {
+    @apply inline-block bg-indigo-500 w-32 text-white text-center hover:bg-indigo-400 focus:ring-indigo-500 focus:ring-opacity-50 px-5 py-3 rounded-lg focus:outline-none focus:ring focus:ring-offset-2 uppercase tracking-wider text-sm sm:text-base;
+  }
 }
